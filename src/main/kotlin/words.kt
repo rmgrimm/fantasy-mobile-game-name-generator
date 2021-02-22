@@ -17,7 +17,7 @@ val words = setOf(
     Word("Clan"),
     Word("Conquest"),
     Word("Crusade"),
-    Word("Darkness"),
+    Word("Darkness", ""),
     Word("Defense", ""),
     Word("Demon"),
     Word("Destiny", pluralOverride = "Destinies"),

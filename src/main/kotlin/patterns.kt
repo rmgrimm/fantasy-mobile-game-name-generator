@@ -1,11 +1,13 @@
 val patterns = arrayOf(
     "{s} {s}",
     "{s} {p}",
+    "{s} of {s} and {s}",
     "{s} of {p}",
     "{p} of the {s}",
     "{s}'s {s}",
-    "{s}: The Last {s}",
-    "{s}: Lost {p}",
+    "{s}: The {s}",
+    "{s}: The {p}",
+    "{s}: {s} of {s} and {s}",
     "{s}: {s} {p}",
     "{p}: {s} {p}",
     "{s} of {p}: {s} and {s}",
@@ -13,5 +15,5 @@ val patterns = arrayOf(
     "{s} {s}: {s} of the {s}",
     "{s} {s}: {s} of {p}",
     "{s} {p}: {p} of the {s}",
-    "{s} {p}: {p} of {p}"
+    "{s} {p}: {p} of {s}"
 )

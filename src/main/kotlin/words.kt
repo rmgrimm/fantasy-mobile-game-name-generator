@@ -151,7 +151,7 @@ val words = setOf(
     Word("Order", ""),
     Word("Overlord"),
     Word("Paladin"),
-    Word("Pegasus"),
+    Word("Pegasus", "es"),
     Word("Phantom"),
     Word("Pharaoh"),
     Word("Phoenix", "es"),
@@ -199,6 +199,7 @@ val words = setOf(
     Word("Skill"),
     Word("Skull"),
     Word("Snow"),
+    Word("Soldier"),
     Word("Son"),
     Word("Song"),
     Word("Soul"),
@@ -247,6 +248,7 @@ val words = setOf(
     Word("Wyvern"),
 
     // Modifiers
+    Word("Dark {s}", pluralOverride = "Dark {p}"),
     Word("Enchanted {s}", pluralOverride = "Enchanted {p}"),
     Word("Evil {s}", pluralOverride = "Evil {p}"),
     Word("Final {s}", pluralOverride = "Final {p}"),

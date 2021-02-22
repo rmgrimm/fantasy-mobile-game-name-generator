@@ -3,6 +3,7 @@ import org.w3c.dom.events.Event
 import kotlin.random.Random
 
 val patternTokens = mapOf<String, (Word) -> String>(
+    "{c}" to Word::letterCount,
     "{s}" to Word::singular,
     "{p}" to Word::plural
 )
@@ -12,6 +13,11 @@ data class Word(
     private val pluralSuffix: String = "s",
     private val pluralOverride: String? = null
 ) {
+    val letterCount: String
+        get() {
+            return singular.length.toString()
+        }
+
     val plural: String
         get() {
             return pluralOverride ?: singular + pluralSuffix

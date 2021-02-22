@@ -47,7 +47,7 @@ fun generateName(): String {
 fun main() {
     val setNewName = { _: Event? ->
         document
-            .getElementById("mobile-game-name")
+            .getElementById("generated-name")
             ?.innerHTML = generateName()
     }
 

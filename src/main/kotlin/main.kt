@@ -1,6 +1,11 @@
-import kotlinx.browser.document;
+import kotlinx.browser.document
 import org.w3c.dom.events.Event
 import kotlin.random.Random
+
+val patternTokens = mapOf<String, (Word) -> String>(
+    "{s}" to Word::singular,
+    "{p}" to Word::plural
+)
 
 data class Word(
     val singular: String,
@@ -13,74 +18,37 @@ data class Word(
         }
 }
 
-val words = setOf(
-    Word("Adventure"),
-    Word("Age"),
-    Word("Dominion"),
-    Word("Dynasty", pluralOverride = "Dynasties"),
-    Word("Eternal"),
-    Word("Empire"),
-    Word("Endless", ""),
-    Word("Epic"),
-    Word("Fire"),
-    Word("Game"),
-    Word("Glory", pluralOverride = "Glories"),
-    Word("Gun"),
-    Word("Hero", "es"),
-    Word("Iron"),
-    Word("Ice"),
-    Word("Kingdom"),
-    Word("Legend"),
-    Word("Lord"),
-    Word("Magic", ""),
-    Word("Mask"),
-    Word("Pharaoh"),
-    Word("Raid"),
-    Word("Rise", ""),
-    Word("Road"),
-    Word("Scroll"),
-    Word("Seven", ""),
-    Word("Shadow"),
-    Word("Summoner"),
-    Word("War")
-)
-
-val patterns = arrayOf(
-    "{s} {p}",
-    "{s} of {p}",
-    "{s}'s {s}",
-    "{s}: {s} {p}",
-    "{s} of {p}: {s} and {s}",
-    "{s} {s}: {s} of {s}"
-)
-
 fun generateName(): String {
+    // Start the name from a pattern
     var name = patterns[Random.nextInt(patterns.size)]
 
+    // Make a copy of the word list, so words can be removed and won't appear twice in this generation run
     val words = words.toMutableList()
 
     do {
-        val token = name.findAnyOf(arrayListOf("{s}", "{p}")) ?: break
+        // Find the next token -- exit the loop if there are none
+        val token = name.findAnyOf(patternTokens.keys) ?: break
 
+        // Grab a random word out of the list, and remove it from the list
         val word = words.removeAt(Random.nextInt(words.size))
 
-        val tokenReplace = if (token.second[1] == 's') {
-            word.singular
-        } else {
-            word.plural
-        }
+        // Determine which kind of token was used, and invoke its associated function/getter
+        val tokenReplace = patternTokens[token.second]?.invoke(word)
 
+        // Reconstruct the string, replacing the token with the word
         name = name.substring(0, token.first) +
             tokenReplace +
             name.substring(token.first + token.second.length)
     } while (true)
 
-    return name;
+    return name
 }
 
 fun main() {
     val setNewName = { _: Event? ->
-        document.getElementById("mobile-game-name")?.innerHTML = generateName()
+        document
+            .getElementById("mobile-game-name")
+            ?.innerHTML = generateName()
     }
 
     document

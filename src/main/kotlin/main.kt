@@ -10,7 +10,11 @@ fun main() {
 }
 
 fun setNewName(event: Event? = null) {
+    val name = generateName()
+
     document
         .getElementById("generated-name")
-        ?.innerHTML = generateName()
+        ?.innerHTML = name
+
+    console.info("Generated: \"$name\"")
 }

@@ -1,6 +1,7 @@
 val patterns = arrayOf(
     "{s} {s}",
     "{s} {p}",
+    "The {c}th {s}",
     "The {s} of {c} {p}",
     "The {c} {p} of {s}",
     "{s} and the {c} {p}",
@@ -11,6 +12,7 @@ val patterns = arrayOf(
     "The {s}'s {c} {p}",
     "{s}: The {s}",
     "{s}: The {p}",
+    "{s}: The {c}th {s}",
     "{s}: {s} and the {c} {p}",
     "{s}: {s} of {s} and {s}",
     "{s}: {s} {p}",

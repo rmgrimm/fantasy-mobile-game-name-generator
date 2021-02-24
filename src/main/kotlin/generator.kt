@@ -36,6 +36,17 @@ data class Word(
         }
 }
 
+// Regexes to support performing proper 1st/2nd/3rd replacements, and other small fix-ups
+val finalizingReplacements = arrayOf(
+    // Fix position identifiers
+    Regex(""" ([02-9]*)1th""") to " $11st",
+    Regex(""" ([02-9]*)2th""") to " $12nd",
+    Regex(""" ([02-9]*)3th""") to " $13rd",
+
+    // Remove double numerical
+    Regex("""[0-9]+ (Seven|Thirteen)""") to "$1"
+)
+
 fun generateName(): String {
     // Start the name from a pattern
     var name = patterns[Random.nextInt(patterns.size)]
@@ -44,10 +55,10 @@ fun generateName(): String {
     val words = words.toMutableList()
 
     do {
-        // Find the next token -- exit the loop if there are none
+        // Find the next token -- exit the loop if there are no more
         val token = name.findAnyOf(patternTokens.keys) ?: break
 
-        // Grab a random word out of the list, and remove it from the list
+        // Grab a random word out of the list, and remove it from the list so it won't show up again
         val word = words.removeAt(Random.nextInt(words.size))
 
         // Determine which kind of token was used, and invoke its associated function/getter
@@ -58,6 +69,10 @@ fun generateName(): String {
             tokenReplace +
             name.substring(token.first + token.second.length)
     } while (true)
+
+    finalizingReplacements.forEach {
+        name = name.replace(it.first, it.second)
+    }
 
     return name
 }

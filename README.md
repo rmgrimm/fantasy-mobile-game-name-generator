@@ -1,5 +1,7 @@
 # fantasy-mobile-game-name-generator
 
+[![Build and Deploy](https://github.com/rmgrimm/fantasy-mobile-game-name-generator/actions/workflows/build-and-deploy.yaml/badge.svg)](https://github.com/rmgrimm/fantasy-mobile-game-name-generator/actions/workflows/build-and-deploy.yaml)
+
 A simple generator to create names for mobile fantasy games.
 This is a parody of the saturation of fantasy games that use generic names and
 target mobile devices.
